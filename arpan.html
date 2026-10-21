@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARPAN HERBAL - Kekayaan Alam Penyembuh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --hijau-tua: #2c5f2d;
+            --hijau-muda: #97bc62;
+            --krem: #f8f5e6;
+            --coklat: #7a4a2f;
+            --putih: #ffffff;
+            --bayangan: rgba(0,0,0,0.1);
+        }
+
+        body {
+            background-color: var(--krem);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            background: linear-gradient(135deg, var(--hijau-tua), #3a703b);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--bayangan);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--putih);
+            font-size: 1.6rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--hijau-muda);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--putih);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--hijau-muda);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        header {
+            margin-top: 70px;
+            background: linear-gradient(rgba(44, 95, 45, 0.8), rgba(44, 95, 45, 0.6)), 
+                        url('https://images.unsplash.com/photo-1597843211337-8a0b5a3b198c?w=1200') center/cover;
+            color: white;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--hijau-muda);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--hijau-muda);
+            color: var(--hijau-tua);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--hijau-tua);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--hijau-muda);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Tentang */
+        .tentang-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tentang-img img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--bayangan);
+        }
+
+        .tentang-text h3 {
+            color: var(--coklat);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Kartu Tumbuhan Herbal */
+        .herbal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .herbal-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--bayangan);
+            transition: transform 0.3s;
+        }
+
+        .herbal-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .herbal-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .herbal-card-content {
+            padding: 1.5rem;
+        }
+
+        .herbal-card-content h3 {
+            color: var(--hijau-tua);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .nama-latin {
+            color: #888;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .manfaat {
+            display: inline-block;
+            background: var(--hijau-muda);
+            color: var(--hijau-tua);
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            margin: 0.3rem 0.3rem 0.3rem 0;
+        }
+
+        /* Fakta Menarik */
+        .fakta-container {
+            background: var(--hijau-tua);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .fakta-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .fakta-item:last-child {
+            border-bottom: none;
+        }
+
+        .fakta-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--hijau-tua);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .tentang-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🌿 <span>ARPAN</span> HERBAL</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#daftar">Daftar Herbal</a></li>
+                <li><a href="#fakta">Fakta Menarik</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Beranda / Hero -->
+    <header id="beranda">
+        <div class="hero-content">
+            <h1>Selamat Datang di <span>ARPAN HERBAL</span></h1>
+            <p>Menjelajahi keajaiban alam Indonesia yang telah dipercaya turun-temurun sebagai sumber kesehatan dan penyembuhan alami.</p>
+            <a href="#daftar" class="btn">Jelajahi Sekarang</a>
+        </div>
+    </header>
+
+    <!-- Tentang Tumbuhan Herbal -->
+    <section id="tentang">
+        <h2 class="section-title">Apa Itu Tumbuhan Herbal?</h2>
+        <div class="tentang-container">
+            <div class="tentang-img">
+                <img src="https://images.unsplash.com/photo-1610141160296-4d71a4c09095?w=600" alt="Tumbuhan Herbal">
+            </div>
+            <div class="tentang-text">
+                <h3>Definisi & Sejarah Singkat</h3>
+                <p><strong>Tumbuhan herbal</strong> adalah jenis tumbuhan yang mengandung zat aktif yang bermanfaat untuk mencegah, mengobati penyakit, dan menjaga kesehatan tubuh.</p>
+                <br>
+                <p>Sejak zaman dahulu, nenek moyang kita telah memanfaatkan tumbuhan di sekitar lingkungan hidup mereka untuk pengobatan. Pengetahuan ini diwariskan secara lisan maupun tulisan, dan kini telah berkembang menjadi ilmu pengetahuan yang dipelajari di berbagai lembaga kesehatan dunia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daftar Tumbuhan Herbal -->
+    <section id="daftar" style="background: white;">
+        <h2 class="section-title">Jenis Tumbuhan Herbal</h2>
+        <div class="herbal-grid">
+            
+            <!-- Jahe -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1590009256097-41a663a32508?w=500" alt="Jahe">
+                <div class="herbal-card-content">
+                    <h3>🫚 Jahe</h3>
+                    <p class="nama-latin">Zingiber officinale</p>
+                    <p>Jahe memiliki rasa pedas dan hangat. Sangat populer di Indonesia sebagai minuman penghangat tubuh dan bumbu masakan.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Pereda Mual</span>
+                        <span class="manfaat">Menghangatkan Tubuh</span>
+                        <span class="manfaat">Meredakan Batuk</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kunyit -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1615485801041-2a3e1f73b358?w=500" alt="Kunyit">
+                <div class="herbal-card-content">
+                    <h3>🟡 Kunyit</h3>
+                    <p class="nama-latin">Curcuma longa</p>
+                    <p>Kaya akan kurkumin yang berfungsi sebagai antioksidan dan anti-inflamasi alami yang sangat kuat.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Anti-inflamasi</span>
+                        <span class="manfaat">Kesehatan Kulit</span>
+                        <span class="manfaat">Meningkatkan Imun</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Temulawak -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1609856702139-545d0c7d8d26?w=500" alt="Temulawak">
+                <div class="herbal-card-content">
+                    <h3>Temulawak</h3>
+                    <p class="nama-latin">Curcuma zanthorrhiza</p>
+                    <p>Sering dipakai untuk menjaga kesehatan pencernaan dan menambah nafsu makan, terutama pada anak-anak.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Kesehatan Lambung</span>
+                        <span class="manfaat">Nafsu Makan</span>
+                        <span class="manfaat">Detoks Hati</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sereh -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1614594007831-441e8e4f9029?w=500" alt="Sereh">
+                <div class="herbal-card-content">
+                    <h3>🍋 Sereh</h3>
+                    <p class="nama-latin">Cymbopogon citratus</p>
+                    <p>Beraroma khas seperti jeruk nipis. Sangat baik untuk meredakan stres dan menurunkan tekanan darah tinggi.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Anti Stres</span>
+                        <span class="manfaat">Darah Tinggi</span>
+                        <span class="manfaat">Membuang Angin Tubuh</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daun Sirih -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1636206132999-2d0d01d42071?w=500" alt="Daun Sirih">
+                <div class="herbal-card-content">
+                    <h3>Daun Sirih</h3>
+                    <p class="nama-latin">Piper betle</p>
+                    <p>Mengandung antiseptik alami yang sangat kuat. Sering dipakai untuk kebersihan mulut dan menghentikan pendarahan ringan.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Antiseptik</span>
+                        <span class="manfaat">Kesehatan Gigi & Mulut</span>
+                        <span class="manfaat">Menyembuhkan Luka</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lidah Buaya -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1591949709105-25e3304f317d?w=500" alt="Lidah Buaya">
+                <div class="herbal-card-content">
+                    <h3>Lidah Buaya</h3>
+                    <p class="nama-latin">Aloe vera</p>
+                    <p>Dikenal sebagai tanaman kecantikan dan penyembuh luka bakar ringan. Mudah ditanam di pekarangan rumah.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Perawatan Kulit</span>
+                        <span class="manfaat">Luka Bakar Ringan</span>
+                        <span class="manfaat">Pelembap Alami</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kencur -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1611687470165-1486daf4d12c?w=500" alt="Kencur">
+                <div class="herbal-card-content">
+                    <h3>Kencur</h3>
+                    <p class="nama-latin">Kaempferia galanga</p>
+                    <p>Beraroma khas dan berasa sedikit pedas. Sangat baik untuk meredakan batuk, sakit kepala, dan pegal-pegal.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Meredakan Batuk</span>
+                        <span class="manfaat">Pegal-Pegal</span>
+                        <span class="manfaat">Sakit Kepala</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Temu Ireng -->
+            <div class="herbal-card">
+                <img src="https://images.unsplash.com/photo-1596587453925-5656109c2532?w=500" alt="Temu Ireng">
+                <div class="herbal-card-content">
+                    <h3>Temu Ireng</h3>
+                    <p class="nama-latin">Curcuma aeruginosa</p>
+                    <p>Berwarna ungu kehitaman di bagian dalam. Dikenal ampuh untuk menjaga daya tahan tubuh dan kesehatan wanita.</p>
+                    <div style="margin-top: 0.8rem;">
+                        <span class="manfaat">Imun Tubuh</span>
+                        <span class="manfaat">Kesehatan Wanita</span>
+                        <span class="manfaat">Anti Oksidan</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Fakta Menarik -->
+    <section id="fakta">
+        <h2 class="section-title">Fakta Menarik Seputar Herbal</h2>
+        <div class="fakta-container">
+            <div class="fakta-item">
+                <h4>🌍 Indonesia adalah Surga Tanaman Herbal</h4>
+                <p>Dari sekitar 40.000 spesies tumbuhan berkhasiat di dunia, lebih dari 30% atau sekitar 12.000 spesies tumbuh di Indonesia!</p>
+            </div>
+            <div class="fakta-item">
+                <h4>📜 Warisan Leluhur Berusia Ribuan Tahun</h4>
+                <p>Pengobatan tradisional Indonesia sudah ada sejak zaman kerajaan kuno, tercatat dalam kitab-kitab kuno seperti Serat Centhini.</p>
+            </div>
+            <div class="fakta-item">
+                <h4>💊 Banyak Obat Modern Berasal dari Tanaman</h4>
+                <p>Sebanyak 25% obat yang kita gunakan saat ini berasal dari tanaman, termasuk aspirin yang awalnya ditemukan di kulit pohon willow.</p>
+            </div>
+            <div class="fakta-item">
+                <h4>⚠️ Gunakan dengan Bijak</h4>
+                <p>Meskipun alami, tanaman herbal tetap perlu digunakan dengan takaran yang tepat. Konsultasikan ke ahli kesehatan jika perlu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>🌿 <strong>ARPAN HERBAL</strong> — Melestarikan Kearifan Lokal untuk Kesehatan Masa Depan</p>
+        <p style="margin-top: 0.5rem;">&copy; 2026 Hak Cipta Dilindungi | Dibuat dengan ❤️</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Menu Mobile Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Tutup menu saat link diklik
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animasi muncul saat scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.herbal-card, .tentang-container, .fakta-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
